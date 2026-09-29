@@ -8,7 +8,7 @@ app.use(express.static('dist'))
 
 app.get('/health', (_req, res) => {
   res.send('ok')
-});
+})
 
 const start = async () => {
   await app.listen(PORT)
