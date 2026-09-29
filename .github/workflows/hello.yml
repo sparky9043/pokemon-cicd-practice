@@ -1,0 +1,17 @@
+name: Hello World
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello_world_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Hello World
+        run: echo "Hello World"
+      - name: Run date command
+        run: date
+      - name: Run ls -l
+        run: ls -l
