@@ -49,6 +49,8 @@ footer {
   height: 150px;
   width: 150px;
   position: relative;
+  box-shadow: 0px 2px 3px grey;
+  border-radius: 5px;
 }
 
 .list-item-name {
@@ -86,6 +88,8 @@ footer {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .pokemon-name {
@@ -103,6 +107,8 @@ footer {
   flex-grow: 1;
   height: 100%;
   padding: 16px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .pokemon-stats {
