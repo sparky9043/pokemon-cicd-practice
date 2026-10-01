@@ -31,3 +31,6 @@ jobs:
       - name: Testing pull request access
         if: ${{ github.event_name == 'pull_request' && contains( toJson(github.event.commits.*.message), '#skip') }}
         run: echo "Pull request contains skip command"
+      - name: Testing pull request opening but not containing skip
+        if: ${{ github.event.name == 'pullrequest' && !contains( toJson(github.event.commits.*.message), '#skip') }}
+        run: echo "If it does not contain skip it should not run"
