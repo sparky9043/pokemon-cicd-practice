@@ -25,3 +25,6 @@ jobs:
       - name: Test contain file
         if: ${{ contains( toJSon(github.event.commits.*.message), '#skip') }}
         run: echo "commit message contains skip"
+      - name: Testing pull request access
+        if: ${{ github.event_name == 'pull_request' && contains( toJson(github.event.commits.*.message), '#skip') }}
+        run: echo "Pull request contains skip command"
