@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize]
 
 jobs:
   a_test_job:
@@ -25,12 +22,9 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
-      - name: Test contain file
-        if: ${{ contains( toJSon(github.event.commits.*.message), '#skip') }}
-        run: echo "commit message contains skip"
-      - name: Testing pull request access
-        if: ${{ github.event_name == 'pull_request' && contains( toJson(github.event.commits.*.message), '#skip') }}
-        run: echo "Pull request contains skip command"
-      - name: Testing pull request opening but not containing skip
-        if: ${{ github.event.name == 'pullrequest' && !contains( toJson(github.event.commits.*.message), '#skip') }}
-        run: echo "If it does not contain skip it should not run"
+      - name: Skip if contains skip tag
+        if: ${{ github.event_name == 'push' && contains(toJson(github.event.commits.*.message) , '#skip') }}
+        run: echo "This contains skip"
+      - name: Run if it does not contain skip tag
+        if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message) , '#skip') }}
+        run: echo "This contains skip"
