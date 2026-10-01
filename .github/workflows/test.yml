@@ -22,6 +22,9 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
-      - name: Test contain file
-        if: ${{ contains( toJSon(github.event.commits.*.message), '#skip') }}
-        run: echo "commit message contains skip"
+      - name: Skip if contains skip tag
+        if: ${{ github.event_name == 'push' && contains(toJson(github.event.commits.*.message) , '#skip') }}
+        run: echo "This contains skip"
+      - name: Run if it does not contain skip tag
+        if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message) , '#skip') }}
+        run: echo "This contains skip"
