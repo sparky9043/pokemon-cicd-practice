@@ -23,5 +23,5 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
       - name: Test contain file
-        if: ${{ contains('Hello World', 'ello') }}
-        run: echo "Hello world contains ello"
+        if: ${{ contains( toJSon(github.event.commits.*.message), '#skip') }}
+        run: echo "commit message contains skip"
