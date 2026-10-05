@@ -49,22 +49,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-  discord_notification:
-    needs: [simple_deployment_pipeline]
-    if: ${{ always() && needs.simple_deployment_pipeline.result == 'failure' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: sarisia/actions-status-discord@v1
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          status: ${{ job.status }}
-          content: "<@691191068557049877>"
-          description: "Build and deploy to GitHub Pages"
-          username: GitHub Actions
-          color: 0xfe4c25
-      - name: Job succeess
-        if: ${{ success() }}
-        run: echo "Success"
-      - name: Job Failure
-        if: ${{ failure() }}
-        run: echo "Failure"
+
