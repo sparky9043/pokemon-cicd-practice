@@ -61,3 +61,9 @@ jobs:
           content: "<@691191068557049877>"
           description: "Build and deploy to GitHub Pages"
           username: GitHub Actions
+      - name: Job succeess
+        if: ${{ success() }}
+        run: echo "Success"
+      - name: Job Failure
+        if: ${{ failure() }}
+        run: echo "Failure"
