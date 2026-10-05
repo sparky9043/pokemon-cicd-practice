@@ -50,7 +50,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
   discord_notification:
-    needs: [simple_deployment_pipeline]
     runs-on: ubuntu-latest
     steps:
       - uses: sarisia/actions-status-discord@v1
