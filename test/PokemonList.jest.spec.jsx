@@ -13,7 +13,7 @@ const pokemonList = [{
   url: 'https://pokeapi.co/api/v2/pokemon/133/',
   name: 'eevee',
   id: 133
-}];
+}]
 
 describe('<PokemonList />', () => {
   it('should render items', () => {
